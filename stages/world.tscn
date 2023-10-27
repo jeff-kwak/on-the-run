@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://ch4uwiqg3qyf6"]
+[gd_scene load_steps=8 format=3 uid="uid://ch4uwiqg3qyf6"]
 
 [ext_resource type="PackedScene" uid="uid://d4ao3ybu05lxu" path="res://characters/player/player.tscn" id="1_31jbd"]
+[ext_resource type="Script" path="res://game/follow-camera.gd" id="2_ftpau"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6x7lq"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -45,5 +46,9 @@ shadow_enabled = true
 [node name="Player" parent="." instance=ExtResource("1_31jbd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 62)
 
-[node name="FollowCamera" type="Camera3D" parent="."]
+[node name="FollowCamera" type="Camera3D" parent="." node_paths=PackedStringArray("target")]
 transform = Transform3D(0.99999, -0.000153029, 0.00438201, 0, 0.999391, 0.0349008, -0.00438468, -0.0349005, 0.999381, 0.168858, 2.66577, 67.796)
+script = ExtResource("2_ftpau")
+target = NodePath("../Player")
+speed = 8.0
+move_mode = 1

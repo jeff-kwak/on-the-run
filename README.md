@@ -3,7 +3,7 @@ Your character is in the "On the Run" marathon. An endless runner with obstacles
 
 
 ## Backlog
-- basic follow camera
+- hazard spawning
 - hazard collision
 - ragdoll physics
 - buffered jump
@@ -11,6 +11,7 @@ Your character is in the "On the Run" marathon. An endless runner with obstacles
 
 
 ## Complete
+- basic follow camera
 - basic jump
 - empty prototype scene
 - basic character movement
