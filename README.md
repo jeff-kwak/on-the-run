@@ -3,12 +3,14 @@ Your character is in the "On the Run" marathon. An endless runner with obstacles
 
 
 ## Backlog
-- character jumping ability
 - basic follow camera
 - hazard collision
 - ragdoll physics
+- buffered jump
+- double jump
 
 
 ## Complete
+- basic jump
 - empty prototype scene
 - basic character movement

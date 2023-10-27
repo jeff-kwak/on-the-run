@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://d4ao3ybu05lxu"]
+[gd_scene load_steps=8 format=3 uid="uid://d4ao3ybu05lxu"]
 
 [ext_resource type="Script" path="res://characters/player/player.gd" id="1_6yw2l"]
 [ext_resource type="Script" path="res://ability/player_locomotion.gd" id="2_lglfl"]
+[ext_resource type="Script" path="res://ability/jump.gd" id="3_t27h0"]
+[ext_resource type="Script" path="res://ability/gravity.gd" id="4_tssts"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_s2upa"]
 
@@ -22,6 +24,18 @@ mesh = SubResource("CapsuleMesh_6qcgr")
 
 [node name="Ability" type="Node" parent="."]
 
-[node name="PlayerLocomotion" type="Node3D" parent="Ability" node_paths=PackedStringArray("character_node")]
+[node name="PlayerLocomotion" type="Node" parent="Ability" node_paths=PackedStringArray("character_node")]
 script = ExtResource("2_lglfl")
 character_node = NodePath("../..")
+
+[node name="Jump" type="Node" parent="Ability" node_paths=PackedStringArray("player")]
+script = ExtResource("3_t27h0")
+player = NodePath("../..")
+height = 1.8
+time_to_peak = 0.25
+time_to_descend = 0.2
+
+[node name="Gravity" type="Node" parent="Ability" node_paths=PackedStringArray("player")]
+script = ExtResource("4_tssts")
+player = NodePath("../..")
+gravity = -10.0
