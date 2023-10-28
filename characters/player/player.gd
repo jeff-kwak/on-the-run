@@ -7,8 +7,6 @@ extends CharacterBody3D
 @onready var gravity_effect: GravityEffect = $Ability/Gravity
 
 
-var _should_jump: bool = false
-
 
 # store desired motion values
 var _right: float = 0.0
@@ -24,14 +22,11 @@ func _ready() -> void:
 func _process(_delta) -> void:
     _right = Input.get_action_strength("right")
     _left = Input.get_action_strength("left")
-    _should_jump = _should_jump or Input.is_action_just_pressed("jump")
+    if Input.is_action_just_pressed("jump"):
+        jump.trigger()
 
 
 func _physics_process(delta):
-    if _should_jump:
-        _should_jump = false
-        jump.on = true
-
     jump.apply()
     gravity_effect.apply(delta)
     locomotion.move(_right - _left)
@@ -50,4 +45,3 @@ func _on_peaked(fall_gravity: float) -> void:
 func _on_landed() -> void:
     print("player: landed")
     gravity_effect.gravity = -10.0
-    jump.on = false

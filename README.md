@@ -5,9 +5,13 @@ Your character is in the "On the Run" marathon. An endless runner with obstacles
 ## Backlog
 - hazard spawning
 - hazard collision
-- ragdoll physics
 - buffered jump
 - double jump
+- track score
+    * decide if time based or distance based is better
+- use temporary assets
+- ragdoll physics
+
 
 
 ## Complete
