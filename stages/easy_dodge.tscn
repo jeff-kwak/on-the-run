@@ -1,0 +1,57 @@
+[gd_scene load_steps=8 format=3 uid="uid://r77m5h1iq6qg"]
+
+[ext_resource type="Script" path="res://stages/start.gd" id="1_ta8cu"]
+[ext_resource type="PackedScene" uid="uid://vt8c6f3ug4b5" path="res://environment/static-hazards/large_block_hazard.tscn" id="2_lfm07"]
+[ext_resource type="PackedScene" uid="uid://bk777vnrpqwjx" path="res://environment/static-hazards/single_hurdle.tscn" id="3_oo1t4"]
+[ext_resource type="PackedScene" uid="uid://co75g1rqe37ty" path="res://environment/static-hazards/tall_wall_7.tscn" id="4_iqow0"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_1ekoj"]
+size = Vector2(16, 32)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vcgy2"]
+size = Vector3(16, 1, 32)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_33sth"]
+size = Vector3(16, 8, 2)
+
+[node name="EasyDodge" type="StaticBody3D"]
+collision_layer = 256
+collision_mask = 0
+script = ExtResource("1_ta8cu")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_1ekoj")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_1ekoj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("BoxShape3D_vcgy2")
+
+[node name="PlayerExitDetection" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -13)
+
+[node name="DetectionCollisionShape" type="CollisionShape3D" parent="PlayerExitDetection"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -2)
+shape = SubResource("BoxShape3D_33sth")
+
+[node name="LargeBlockHazard" parent="." instance=ExtResource("2_lfm07")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 14)
+
+[node name="LargeBlockHazard2" parent="." instance=ExtResource("2_lfm07")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.07509, 0, 0.075799)
+
+[node name="LargeBlockHazard4" parent="." instance=ExtResource("2_lfm07")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.07509, 0, -10.9242)
+
+[node name="LargeBlockHazard3" parent="." instance=ExtResource("2_lfm07")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.98911, 0, 9.00035)
+
+[node name="SingleHurdle" parent="." instance=ExtResource("3_oo1t4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
+
+[node name="TallWallSevenWide2" parent="." instance=ExtResource("4_iqow0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.49657, 0, 3.63436)
+
+[connection signal="body_entered" from="PlayerExitDetection" to="." method="_on_player_exit_detection_body_entered"]

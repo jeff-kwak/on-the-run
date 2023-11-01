@@ -6,7 +6,9 @@ enum MoveMode { IDLE, PHYSICS }
 
 @export var target: Node3D = null
 @export var speed: float = 16.0
+@export var backoff_distance: float = 6.0
 @export var move_mode: MoveMode = MoveMode.IDLE
+
 
 
 var _target_vector: Vector3 = Vector3.ZERO
@@ -29,6 +31,7 @@ func _move(delta: float) -> void:
 
     var direction = target.position - position
     _target_vector.x = direction.x
+    _target_vector.z = direction.z + backoff_distance
 
     if not direction.is_zero_approx():
         position += _target_vector * speed * delta

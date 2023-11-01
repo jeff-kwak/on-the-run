@@ -14,6 +14,7 @@ albedo_color = Color(1, 0, 0, 1)
 material = SubResource("StandardMaterial3D_iq2fl")
 
 [node name="Player" type="CharacterBody3D"]
+collision_mask = 258
 script = ExtResource("1_6yw2l")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -26,6 +27,7 @@ mesh = SubResource("CapsuleMesh_6qcgr")
 
 [node name="PlayerLocomotion" type="Node" parent="Ability" node_paths=PackedStringArray("character_node")]
 script = ExtResource("2_lglfl")
+forward_speed = 9.0
 character_node = NodePath("../..")
 
 [node name="Jump" type="Node" parent="Ability" node_paths=PackedStringArray("player")]

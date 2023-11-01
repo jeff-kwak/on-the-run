@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="on-the-run"
-run/main_scene="res://stages/world.tscn"
+run/main_scene="res://game/world.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+EventBus="*res://game/event_bus.gd"
 
 [input]
 
@@ -35,3 +39,9 @@ jump={
 , Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":0,"pressure":0.0,"pressed":true,"script":null)
 ]
 }
+
+[layer_names]
+
+3d_physics/layer_1="player"
+3d_physics/layer_2="hurt_player"
+3d_physics/layer_9="environment"

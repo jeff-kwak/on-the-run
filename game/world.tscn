@@ -1,0 +1,46 @@
+[gd_scene load_steps=10 format=3 uid="uid://ch4uwiqg3qyf6"]
+
+[ext_resource type="PackedScene" uid="uid://by0h5i8j4llks" path="res://stages/start.tscn" id="1_jiiex"]
+[ext_resource type="Script" path="res://game/world.gd" id="1_x5oku"]
+[ext_resource type="PackedScene" uid="uid://d4ao3ybu05lxu" path="res://characters/player/player.tscn" id="2_xhgo8"]
+[ext_resource type="Script" path="res://game/follow-camera.gd" id="3_7l7xw"]
+[ext_resource type="PackedScene" uid="uid://r77m5h1iq6qg" path="res://stages/easy_dodge.tscn" id="4_lr5du"]
+[ext_resource type="PackedScene" uid="uid://mvtrqieg6el0" path="res://stages/gaps.tscn" id="5_xwlua"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6x7lq"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_odgj1"]
+sky_material = SubResource("ProceduralSkyMaterial_6x7lq")
+
+[sub_resource type="Environment" id="Environment_qhwus"]
+background_mode = 2
+sky = SubResource("Sky_odgj1")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="World" type="Node3D" node_paths=PackedStringArray("start_scene")]
+script = ExtResource("1_x5oku")
+possible_stages = Array[PackedScene]([ExtResource("4_lr5du"), ExtResource("5_xwlua")])
+start_scene = NodePath("Start")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_qhwus")
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.707107, -0.494454, 0.505485, 0, 0.714863, 0.699264, -0.707107, -0.494454, 0.505485, 0, 23.7276, 0)
+light_energy = 2.0
+shadow_enabled = true
+
+[node name="Player" parent="." instance=ExtResource("2_xhgo8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 14)
+
+[node name="FollowCamera" type="Camera3D" parent="." node_paths=PackedStringArray("target")]
+transform = Transform3D(0.99999, -0.000153029, 0.00438201, 0, 0.999391, 0.0349008, -0.00438468, -0.0349005, 0.999381, 0, 2.666, 20)
+script = ExtResource("3_7l7xw")
+target = NodePath("../Player")
+speed = 8.0
+move_mode = 1
+
+[node name="Start" parent="." instance=ExtResource("1_jiiex")]

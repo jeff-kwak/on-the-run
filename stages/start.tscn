@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://by0h5i8j4llks"]
+
+[ext_resource type="Script" path="res://stages/start.gd" id="1_pojy5"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_1ekoj"]
+size = Vector2(16, 32)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vcgy2"]
+size = Vector3(16, 1, 32)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_33sth"]
+size = Vector3(16, 8, 2)
+
+[node name="Start" type="StaticBody3D"]
+collision_layer = 256
+collision_mask = 0
+script = ExtResource("1_pojy5")
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_1ekoj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("BoxShape3D_vcgy2")
+
+[node name="PlayerExitDetection" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -13)
+
+[node name="DetectionCollisionShape" type="CollisionShape3D" parent="PlayerExitDetection"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -2)
+shape = SubResource("BoxShape3D_33sth")
+
+[connection signal="body_entered" from="PlayerExitDetection" to="." method="_on_player_exit_detection_body_entered"]
