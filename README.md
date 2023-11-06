@@ -10,13 +10,15 @@ what I meant by that.
 
 
 ## Backlog
+- use Kenney character model and animation
+- use Kenney platformer assets
 - hazard collision
 - buffered jump
 - double jump
+- coyote jump
+- ragdoll physics
 - track score
     * decide if time based or distance based is better
-- use temporary assets
-- ragdoll physics
 - proper third person camera
 
 
